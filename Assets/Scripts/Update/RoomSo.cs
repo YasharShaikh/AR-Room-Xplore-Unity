@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Room Data", menuName = "Room Data")]
@@ -7,7 +6,7 @@ public class RoomSo : ScriptableObject
     [Header("UI Info")]
     public string header;           // Room header text
     public string subHeader;        // Room sub-header text
-    public string squareFeet;       // Square footage of the room
+    public string size;       // Square footage of the room
     public string price;            // Price of the room
     public Sprite displayImage;     // Display image for UI
 

@@ -14,9 +14,9 @@ public class RoomDataHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        image.sprite = roomSo.displayImage;
         Header.text = roomSo.header;
         SubHeader.text = roomSo.subHeader;
+        image.sprite = roomSo.displayImage;
     }
 
     // Update is called once per frame
@@ -28,5 +28,6 @@ public class RoomDataHandler : MonoBehaviour
     public void ButtonPressed()
     {
         UIDataManager.Instance.roomSoContainer = roomSo;
+        ContentSetter.Instance.SetData();
     }
 }
