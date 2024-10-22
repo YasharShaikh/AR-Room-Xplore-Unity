@@ -7,7 +7,6 @@ using System;
 
 public class UIManager : MonoBehaviour
 {
-    public static UIDataManager instance;
     public int roomID;
 
     [Header("References")]

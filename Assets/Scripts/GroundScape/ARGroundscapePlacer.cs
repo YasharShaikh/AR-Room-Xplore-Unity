@@ -8,6 +8,8 @@ using UnityEngine.XR.ARSubsystems;
 
 public class ARGroundscapePlacer : MonoBehaviour
 {
+
+    [SerializeField] RoomSo roomSo;
     [Header("Animation")]
     [SerializeField] float animationSpeed;
     [SerializeField] float animationDistance;
@@ -18,12 +20,10 @@ public class ARGroundscapePlacer : MonoBehaviour
     [SerializeField] GameObject HowToInstruction;
     [SerializeField] RectTransform scanGroundMobile;
     [SerializeField] RectTransform scanGroundFloor;
-    [SerializeField] List<GameObject> roomPrefabs;
     [SerializeField] GameObject placementIndicator;
     [Space]
     [SerializeField] GameObject GroundScapeDescription;
     GameObject holder;
-    [SerializeField] int groundQuestID;
     Sequence instructionSequence;
     GameObject spawnedObject;
     Pose placementPose;
@@ -56,12 +56,12 @@ public class ARGroundscapePlacer : MonoBehaviour
             {
                 PlaceObject();
             }
-           
-                UpdatePlacementPose();
-                UpdatePlacementIndicator();
-        
+
+            UpdatePlacementPose();
+            UpdatePlacementIndicator();
+
         }
-       
+
 
 
     }
@@ -98,24 +98,29 @@ public class ARGroundscapePlacer : MonoBehaviour
 
     void PlaceObject()
     {
-        switch (groundQuestID)
+        if(roomSo!=null)
         {
-            case 1:
-                spawnedObject = Instantiate(roomPrefabs[0], placementPose.position, placementPose.rotation);
-                break;
-
-            case 2:
-                spawnedObject = Instantiate(roomPrefabs[1], placementPose.position, placementPose.rotation);
-                break;
-
-            case 3:
-                spawnedObject = Instantiate(roomPrefabs[2], placementPose.position, placementPose.rotation);
-                break;
-
-            case 4:
-                spawnedObject = Instantiate(roomPrefabs[2], placementPose.position, placementPose.rotation);
-                break;
+            spawnedObject = Instantiate(roomSo.roomPrefab,placementPose.position, placementPose.rotation);
         }
+
+        //switch (groundQuestID)
+        //{
+        //    case 1:
+        //        spawnedObject = Instantiate(roomPrefabs[0], placementPose.position, placementPose.rotation);
+        //        break;
+
+        //    case 2:
+        //        spawnedObject = Instantiate(roomPrefabs[1], placementPose.position, placementPose.rotation);
+        //        break;
+
+        //    case 3:
+        //        spawnedObject = Instantiate(roomPrefabs[2], placementPose.position, placementPose.rotation);
+        //        break;
+
+        //    case 4:
+        //        spawnedObject = Instantiate(roomPrefabs[2], placementPose.position, placementPose.rotation);
+        //        break;
+        //}
 
         if (spawnedObject != null)
         {
@@ -135,7 +140,7 @@ public class ARGroundscapePlacer : MonoBehaviour
     {
         holder = null;
         raycastManager = GetComponent<ARRaycastManager>();
-    
+
     }
 
     private void ShowHowToInstruction()
@@ -182,7 +187,6 @@ public class ARGroundscapePlacer : MonoBehaviour
     /// </summary>
     public void BackButton()
     {
-        PlayerPrefs.DeleteKey("GroundQuest");
         SceneManager.LoadScene(0);
     }
     public void ResetAROBJButton()

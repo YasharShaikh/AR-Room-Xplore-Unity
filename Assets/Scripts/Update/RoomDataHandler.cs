@@ -1,15 +1,21 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class RoomDataHandler : MonoBehaviour
 {
-
+    [SerializeField] Button ViewContentButton;
     [SerializeField] RoomSo roomSo;
     [SerializeField] Image image;
     [SerializeField] TMP_Text Header;
     [SerializeField] TMP_Text SubHeader;
 
+
+    private void Awake()
+    {
+        ViewContentButton.onClick.AddListener(ButtonPressed);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -19,15 +25,10 @@ public class RoomDataHandler : MonoBehaviour
         image.sprite = roomSo.displayImage;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void ButtonPressed()
     {
-        UIDataManager.Instance.roomSoContainer = roomSo;
+        UIDataManager.Instance.ShowContentPanel();
+        UIDataManager.Instance.RoomDataContainerFill(roomSo);
         ContentSetter.Instance.SetData();
     }
 }

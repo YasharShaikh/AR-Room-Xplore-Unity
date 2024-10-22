@@ -19,10 +19,12 @@ public class ContentSetter : MonoBehaviour
     }
     public void SetData()
     {
+
         headerText.text = manager.roomSoContainer.header;
         subHeaderText.text = manager.roomSoContainer.subHeader;
         mockImage.sprite = manager.roomSoContainer.displayImage;
         priceText.text = manager.roomSoContainer.price;
         sizeText.text = manager.roomSoContainer.size;
+
     }
 }
