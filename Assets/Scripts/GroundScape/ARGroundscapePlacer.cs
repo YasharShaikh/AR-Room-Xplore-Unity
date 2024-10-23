@@ -8,8 +8,8 @@ using UnityEngine.XR.ARSubsystems;
 
 public class ARGroundscapePlacer : MonoBehaviour
 {
-
-    [SerializeField] RoomSo roomSo;
+    public static ARGroundscapePlacer Instance;
+    public RoomSo roomSo;
     [Header("Animation")]
     [SerializeField] float animationSpeed;
     [SerializeField] float animationDistance;
@@ -35,6 +35,7 @@ public class ARGroundscapePlacer : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
         Initialization();
         loadedFirstTime = true;
     }
@@ -61,9 +62,6 @@ public class ARGroundscapePlacer : MonoBehaviour
             UpdatePlacementIndicator();
 
         }
-
-
-
     }
 
     private void UpdatePlacementIndicator()
